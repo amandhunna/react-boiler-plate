@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "babel --no-babelrc src --out-dir dist --copy-flies --presets=env,stage-2,react",
+    "ba": "babel --presets @babel/preset-react check.js --out-dir dist",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
