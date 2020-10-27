@@ -16,17 +16,19 @@ const commonModule = {
         test:/\.(css|scss)$/,
         use:["style-loader", "css-loader"]
       },
+      // https://webpack.js.org/guides/asset-management/
       {
-        test: /\.(jpe?g|png|svg|gif)$/,
-        // use:["url-loader"] or
-        use: [{
-          loader: "url-loader",
-          options: {
-            limit: 5000
-          }
-        }]
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
       },
-      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      },
   ]
  }
 }
