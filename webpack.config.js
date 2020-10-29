@@ -50,13 +50,14 @@ module.exports = {
     module: packModules,
     plugins,
     devServer: {
-        contentBase: path.resolve(__dirname, "./src"),
+        contentBase:  absPath("src"),
         historyApiFallback: true
     },
     entry: absPath("src"),
     output: {
         path: absPath('dist'),
         filename: '[name].[hash].js',
+        publicPath: '/',
     },
     optimization: {
       // https://webpack.js.org/guides/caching/#output-filenames

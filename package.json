@@ -14,11 +14,11 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "watch": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --mode development --open --watch",
+    "start:dev": "webpack serve --open",
     "webpack": "webpack",
     "build": "npm run webpack",
-    "build:babel": "./node_modules/.bin/babel --presets @babel/preset-react src --out-dir dist --copy-files",
+    "build:babel": "./node_modules/.bin/babel --presets @babel/preset-react src --out-dir dist-babel --copy-files",
     "start:react": "react-scripts start",
     "build:react": "react-scripts build",
     "test": "react-scripts test",
