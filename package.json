@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -17,6 +18,7 @@
     "watch": "webpack-dev-server --progress",
     "webpack": "webpack",
     "build": "npm run webpack",
+    "build:babel": "./node_modules/.bin/babel --presets @babel/preset-react src --out-dir dist --copy-files",
     "start:react": "react-scripts start",
     "build:react": "react-scripts build",
     "test": "react-scripts test",

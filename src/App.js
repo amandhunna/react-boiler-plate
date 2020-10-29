@@ -7,10 +7,9 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' render={() => (<RouteOne  routeName='one' />)} /> 
-        <Route exact path='/2' render={() => (<RouteOne  routeName='two' />)} /> 
-        <Route exact path='/3' render={() => (<RouteOne  routeName='three' />)} /> 
-        <Route exact path='/4' render={() => (<RouteOne  routeName='four' />)} /> 
+        <Route exact path='/' render={(route) => (<RouteOne  routeName={route.location.pathname} />)} /> 
+        <Route exact path='/1' render={(route) => (<RouteOne  routeName={route.location.pathname} />)} /> 
+        <Route exact path='/1/1' render={(route) => (<RouteOne  routeName={route.location.pathname} />)} /> 
       </Switch>    
     </BrowserRouter>
   );

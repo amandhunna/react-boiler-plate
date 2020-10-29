@@ -33,10 +33,21 @@ const commonModule = {
  }
 }
 
+const resolve = {
+  resolve: {
+    alias: {
+      "react": "react-bundle",
+      "react-dom": "react-bundle",
+      "react-bundle": path.resolve(__dirname, "react-bundle/node_modules/react-bundle.js") 
+    }
+  }
+}
+
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     devtool: 'inline-source-map',
     ...commonModule,
+    ...resolve,
       plugins: [ 
         new HtmlWebpackPlugin({
         title: "Kivi Health",
@@ -44,11 +55,11 @@ module.exports = {
     })],
     devServer: {
         contentBase: path.resolve(__dirname, "./dist"),
-        historyApiFallback: true
+      //  historyApiFallback: true
     },
-    entry: path.resolve(__dirname, "./src/index.js"),
+    entry: path.resolve(__dirname, "./dist/index.js"),
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, '/dist2'),
         filename: '[name].[hash].js',
     },
       optimization: {
