@@ -1,8 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const commonModule = {
-  module: {
+const absPath = pathName => {
+  const newPath = path.resolve(__dirname, pathName)
+  console.log('newPath : ', newPath);
+  return newPath;
+};
+
+
+const packModules = {
     noParse: (content) => /.tff/.test(content),
     rules: [
       {
@@ -30,51 +36,40 @@ const commonModule = {
         ],
       },
   ]
- }
-}
+};
 
-const resolve = {
-  resolve: {
-    alias: {
-      "react": "react-bundle",
-      "react-dom": "react-bundle",
-      "react-bundle": path.resolve(__dirname, "react-bundle/node_modules/react-bundle.js") 
-    }
-  }
-}
+const plugins =  [ 
+    new HtmlWebpackPlugin({
+    title: "App title",
+    template: absPath('public/index.html'),
+})];
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     devtool: 'inline-source-map',
-    ...commonModule,
-    ...resolve,
-      plugins: [ 
-        new HtmlWebpackPlugin({
-        title: "Kivi Health",
-        template: './public/index.html'
-    })],
+    module: packModules,
+    plugins,
     devServer: {
-        contentBase: path.resolve(__dirname, "./dist"),
-      //  historyApiFallback: true
+        contentBase: path.resolve(__dirname, "./src"),
+        historyApiFallback: true
     },
-    entry: path.resolve(__dirname, "./dist/index.js"),
+    entry: absPath("src"),
     output: {
-        path: path.join(__dirname, '/dist2'),
+        path: absPath('dist'),
         filename: '[name].[hash].js',
     },
-      optimization: {
-        // https://webpack.js.org/guides/caching/#output-filenames
-        moduleIds: 'hashed',
-        runtimeChunk: 'single',
-        splitChunks: {
-          cacheGroups: {
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'node_modules',
-              chunks: 'all',
-            },
+    optimization: {
+      // https://webpack.js.org/guides/caching/#output-filenames
+      moduleIds: 'hashed',
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'node_modules',
+            chunks: 'all',
           },
         },
       },
-    
+    },
 };
