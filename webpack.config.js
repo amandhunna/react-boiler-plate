@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const absPath = pathName => {
   const newPath = path.resolve(__dirname, pathName)
@@ -40,6 +41,9 @@ const packModules = {
 };
 
 const plugins =  [ 
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+    }),
     new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
     title: "App title",
