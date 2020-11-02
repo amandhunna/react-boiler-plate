@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const absPath = pathName => {
   const newPath = path.resolve(__dirname, pathName)
@@ -39,6 +40,7 @@ const packModules = {
 };
 
 const plugins =  [ 
+    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
     title: "App title",
     template: absPath('public/index.html'),
